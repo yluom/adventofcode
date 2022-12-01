@@ -2,7 +2,6 @@ package fr.lmo.aoc2022;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -20,7 +19,9 @@ public class D01 extends AoCHelper {
 
         int current = 0;
         List<String> l = stream.toList();
-        List<Integer> maxes= new ArrayList<>();
+        List<Integer> maxes = new ArrayList<>();
+        // Pas trouvé de jolie solution afaik pour découper par rêne chaque liste de calories
+        // Parsing de chacun des max des rênes
         for (String s : l) {
             if (s.isEmpty()) {
                 maxes.add(current);
@@ -29,6 +30,7 @@ public class D01 extends AoCHelper {
                 current += Integer.parseInt(s);
             }
         }
+        // Trie les max par ordre décroissant, limite au topX et retourne la somme
         return maxes.stream().sorted(Comparator.reverseOrder()).limit(topOfMaxes).reduce(0, Integer::sum);
     }
 }
