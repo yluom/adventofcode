@@ -10,6 +10,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Code opensource sans licence honteusement pompé chez le Grand Maitre https://github.com/elacazed/aoc2021
+ */
 public abstract class AoCHelper {
 
 
@@ -39,6 +42,7 @@ public abstract class AoCHelper {
     public Path getInputPath() {
         return getPath("input");
     }
+
     public String readFile(Path path) {
         try {
             return Files.readString(path);
