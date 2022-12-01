@@ -1,7 +1,6 @@
 package fr.lmo.aoc2021;
 
-import fr.ela.aoc2021.AoC;
-import fr.lmo.utils.AoCHelper;
+import fr.lmo.aoc2022.AoCHelper;
 
 import java.util.IntSummaryStatistics;
 import java.util.List;

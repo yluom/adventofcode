@@ -1,4 +1,4 @@
-package fr.lmo.utils;
+package fr.lmo.aoc2022;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -29,7 +29,7 @@ public abstract class AoCHelper {
     }
 
     private Path getPath(String name) {
-        return Paths.get("target", "classes", getDirectoryName(getClass()), getFileName(name));
+        return Paths.get("src","main","resources", "2022", getDirectoryName(getClass()), getFileName(name));
     }
 
     public Path getTestInputPath() {

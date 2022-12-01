@@ -1,6 +1,6 @@
 package fr.lmo.aoc2021;
 
-import fr.lmo.utils.AoCHelper;
+import fr.lmo.aoc2022.AoCHelper;
 
 import java.util.stream.Stream;
 
