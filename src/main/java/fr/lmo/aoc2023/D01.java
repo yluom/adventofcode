@@ -15,12 +15,11 @@ public class D01 extends AoCHelper {
             "seven", "7",
             "eight", "8",
             "nine", "9"
-
     );
 
     public void run() {
         System.out.println("Test : " + decypherNumbersAndAdd(list(getTestInputPath())));
-        // System.out.println("Real : " + decypherNumbersAndAdd(list(getInputPath())));
+        //System.out.println("Real : " + decypherNumbersAndAdd(list(getInputPath())));
     }
 
     private Integer decypherNumbersAndAdd(List<String> l) {
@@ -28,7 +27,7 @@ public class D01 extends AoCHelper {
                 .peek(lin -> System.out.println("line=" + lin))
                 .map(this::replaceTextWithDigits) // remplace le texte par les chiffres
                 .peek(lin -> System.out.println("transform=" + lin))
-                .map(line -> line.replaceAll("[a-zA-Z]", "")) // enlève les lettres
+                .map(line -> line.replaceAll("[a-zA-Z]", "")) // enlève les lettres restantes
                 .peek(lin -> System.out.println("nochars=" + lin))
                 .mapToInt(numbers -> Integer.parseInt(numbers.charAt(0) + numbers.substring(numbers.length() - 1))) // récup le premier chiffre et le dernier et je les ajoute
                 .peek(System.out::println)
@@ -42,7 +41,7 @@ public class D01 extends AoCHelper {
      * @return
      */
     private String replaceTextWithDigits(String s) {
-        for (Map.Entry<String, String> stringIntegerEntry : map.entrySet()) {
+        for (var stringIntegerEntry : map.entrySet()) {
             s = s.replaceAll(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
         }
         return s;
