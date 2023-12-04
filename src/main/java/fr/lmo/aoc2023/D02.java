@@ -35,7 +35,7 @@ public class D02 extends AoCHelper {
 
     private ToIntFunction<Game> gameToMinimalPower() {
         return g -> g.sets().stream()
-                .mapToInt(s -> 1)// trouver les max de chaque couleur
+                .mapToInt(s -> 1)// TODO trouver les max de chaque couleur
                 .reduce(0, (a,b) -> a * b); // les multiply
     }
 
