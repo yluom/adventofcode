@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class D01 extends AoCHelper {
 
-    Map<String, String> map = Map.of(
+    Map<String, String> digits = Map.of(
             "one", "1",
             "two", "2",
             "three", "3",
@@ -34,16 +34,27 @@ public class D01 extends AoCHelper {
                 .sum();
     }
 
-    /**
-     * TODO this doesn't work for words like "eightwo" that should be "8wo" but actually renders "eigh2"
-     *
-     * @param s
-     * @return
-     */
     private String replaceTextWithDigits(String s) {
-        for (var stringIntegerEntry : map.entrySet()) {
-            s = s.replaceAll(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
+        String textWithDigits = "";
+        String tmp = "";
+        for (Character c : s.toCharArray()) {
+            // si nombre ajoute à text
+            if (Character.isDigit(c)) {
+                textWithDigits += tmp + c;
+                tmp = ""; //reset tmp
+            } else {
+                // lettre
+                tmp += c;
+                if (digits.containsKey(tmp)) { // FIXME problem here eightwothree -> 8wothree
+                    textWithDigits += digits.get(tmp);
+                    tmp = "";
+                }
+            }
         }
-        return s;
+        return textWithDigits+tmp;
+//        for (var stringIntegerEntry : digits.entrySet()) {
+//            s = s.replaceAll(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
+//        }
+//        return s;
     }
 }
