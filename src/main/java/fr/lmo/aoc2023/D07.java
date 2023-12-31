@@ -33,6 +33,6 @@ public class D07 extends AoCHelper {
         List<String> lines = list(path);
         String[] times = lines.get(0).substring("Time:".length()).trim().split("\s+");
         String[] distances = lines.get(1).substring("Distance:".length()).trim().split("\s+");
-        return IntStream.range(0, times.length).mapToObj(i -> new Hand().toList();
+        return IntStream.range(0, times.length).mapToObj(i -> new Hand()).toList();
     }
 }
