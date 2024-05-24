@@ -1,38 +1,65 @@
 package fr.lmo.aoc2023;
 
 import java.nio.file.Path;
-import java.util.List;
-import java.util.function.LongPredicate;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 
 
 public class D07 extends AoCHelper {
 
     public void run() {
-        System.out.println("Test : " + findWinningWays(parseHands(getTestInputPath())));
-        System.out.println("Real file : " + findWinningWays(parseHands(getInputPath())));
+        System.out.println("Test : " + findWinnings(parseHands(getTestInputPath())));
+        System.out.println("Real file : " + findWinnings(parseHands(getInputPath())));
     }
 
-    private long findWinningWays(List<Hand> hands) {
-        return 1;
+    private long findWinnings(List<Hand> hands) {
+        // calculate type
+        // sort by rank
+        // sum(rank*bid)
+        return
+        hands.stream()
+                .filter(x-> true)
+
+                .peek(System.err::println).count();
+        //return 1;
     }
 
-    record Hand() {}
+    enum Type {
+        FIVE,
+        FOUR,
+        FULL,
+        THREE,
+        TWOPAIR,
+        PAIR,
+        HIGH
+    }
+    record Hand(String cards, int bid, Type type) {
+        Hand(String cards, int bid) {
+            this(cards, bid, calcType(cards));
+        }
+
+//        AAAAA -> FIVE
+        private static Type calcType(String cards) {
+            Map<String, Long> result = Arrays.stream(cards.split(""))
+                    .map(String::toLowerCase)
+                    .collect(Collectors.groupingBy(s -> s,
+                            LinkedHashMap::new,
+                            Collectors.counting()));
+            //result.s
+            return Type.FIVE;
+        }
+    }
 
 
     public static void main(String[] args) {
         AoCHelper.main(args);
     }
 
-    /**
-     * CopyPasted from @elacazed, parsing input strings is not my cup of tea (and isn't the purpose of AoC...  I guess :p)
-     */
     List<Hand> parseHands(Path path) {
-        List<String> lines = list(path);
-        String[] times = lines.get(0).substring("Time:".length()).trim().split("\s+");
-        String[] distances = lines.get(1).substring("Distance:".length()).trim().split("\s+");
-        return IntStream.range(0, times.length).mapToObj(i -> new Hand()).toList();
+        return stream(path).map(line ->
+                        new Hand(
+                                line.split(" ")[0],
+                                Integer.parseInt(line.split(" ")[1]))
+                ).toList();
     }
 }
